@@ -23,6 +23,7 @@ import (
 	"io/ioutil"
 
 	"github.com/gohugoio/hugo/parser/metadecoders"
+	"github.com/gohugoio/hugo/preproc"
 	"github.com/pkg/errors"
 )
 
@@ -108,6 +109,9 @@ func parseSection(r io.Reader, cfg Config, start stateFunc) (Result, error) {
 	b, err := ioutil.ReadAll(r)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to read page content")
+	}
+	if cfg.FileInfo != nil {
+		b = preproc.PreProcess(b, cfg.FileInfo.Meta().Path())
 	}
 	return parseBytes(b, cfg, start)
 }
