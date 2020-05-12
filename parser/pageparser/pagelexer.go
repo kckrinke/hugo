@@ -20,6 +20,7 @@ package pageparser
 import (
 	"bytes"
 	"fmt"
+	"github.com/gohugoio/hugo/hugofs"
 	"unicode"
 	"unicode/utf8"
 )
@@ -68,6 +69,7 @@ func (l *pageLexer) Input() []byte {
 
 type Config struct {
 	EnableEmoji bool
+	FileInfo    hugofs.FileMetaInfo
 }
 
 // note: the input position here is normally 0 (start), but

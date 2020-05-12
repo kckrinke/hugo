@@ -144,7 +144,7 @@ func (m *pageMap) newPageFromContentNode(n *contentNode, parentBucket *pagesMapB
 
 	parseResult, err := pageparser.Parse(
 		r,
-		pageparser.Config{EnableEmoji: s.siteCfg.enableEmoji},
+		pageparser.Config{EnableEmoji: s.siteCfg.enableEmoji, FileInfo: n.fi},
 	)
 	if err != nil {
 		return nil, err
