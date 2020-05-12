@@ -37,6 +37,30 @@ So what's different here?
 
 * There's a simple Makefile, nothing fancy
 * Includes the "ignore-lockfiles" changes from [obar](https://github.com/obar/hugo)
+* Includes a new "content preprocessor" feature
+
+To use the content preprocessor feature, first prepare a script to use as the pre-processor. For example:
+
+```
+#!/bin/bash
+echo "hugo content path: $1"
+while read LINE
+do
+  echo "RX: $LINE"
+done
+```
+
+* This script expects the first argument to be the hugo content path of the file being read, such as `posts/your-post-name.md`.
+* The script then reads one line at a time from STDIN and prints the same line out but adds a prefix of "RX: ".
+  * This will of course ruin any front-matter in your content files but will very clearly demonstrate the feature.
+* Given a suitable script to use, set the `HUGO_PREPROC_CMD` environment variable to the path of that script.
+* Using a build of hugo from this repo/branch, whenever a content file is read (during the build/rebuild process) and before any other processing happens, hugo will call the script
+  * the only argument is the hugo path, ie: `posts/your-post-name.md`
+  * the original content is sent via STDIN
+  * all output is used as if it were read from the original file
+  * if the script fails or is unable to read the output fully, the original content is used and errors are logged in the command line output
+
+This is all entirely hackish at this point but it works for me. :)
 
 #### Supported Architectures
 
