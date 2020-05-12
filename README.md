@@ -2,6 +2,8 @@
 
 A Fast and Flexible Static Site Generator built with love by [bep](https://github.com/bep), [spf13](http://spf13.com/) and [friends](https://github.com/gohugoio/hugo/graphs/contributors) in [Go][].
 
+NOTE: This is not the upstream version. If you pulled commits from this branch, that's bad. Don't do that!
+
 [Website](https://gohugo.io) |
 [Forum](https://discourse.gohugo.io) |
 [Documentation](https://gohugo.io/getting-started/) |
@@ -26,6 +28,15 @@ Hugo renders a typical website of moderate size in a fraction of a second.
 A good rule of thumb is that each piece of content renders in around 1 millisecond.
 
 Hugo is designed to work well for any kind of website including blogs, tumbles, and docs.
+
+#### kckrinke's version
+
+This version of Hugo is kckrinke's version of hugo, used for development and experimentation to meet his needs. All useful changes here are intended for hugo-upstream and are maintained here until upstream adoption (if that ever happens, who knows right?).
+
+So what's different here?
+
+* There's a simple Makefile, nothing fancy
+* Includes the "ignore-lockfiles" changes from [obar](https://github.com/obar/hugo)
 
 #### Supported Architectures
 
